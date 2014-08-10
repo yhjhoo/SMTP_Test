@@ -46,6 +46,12 @@ public class FXMLController implements Initializable {
 	private HTMLEditor emailContent;
 	
 	@FXML
+	private TextField smtpServer;
+	
+	@FXML
+	private TextField smtpPort;
+	
+	@FXML
 	private Button smtp_test_configuration;
 
 	@FXML
@@ -59,7 +65,8 @@ public class FXMLController implements Initializable {
 		
 		String mailContent = emailContent.getHtmlText();
 		
-		_sendEmail("localhost", null, null, 
+		
+		_sendEmail("localhost", smtpServer.getText(), smtpPort.getText(), 
 				mailTo, mailFrom, mailSubject, mailContent);
 	}
 
