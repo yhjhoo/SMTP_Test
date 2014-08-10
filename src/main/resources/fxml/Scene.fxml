@@ -6,28 +6,47 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" prefHeight="419.0" prefWidth="587.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prince.smtp_test.FXMLController">
-	<children>
-		<Button fx:id="button_send" layoutX="39.0" layoutY="378.0" onAction="#handleSendEmailAction" text="Send Email" />
-		<Button fx:id="button_cancel" layoutX="145.0" layoutY="378.0" onAction="#handleCancelAction" text="Cancel" />
-		<Label layoutX="39.0" layoutY="51.0" text="To:" />
-		<TextArea fx:id="emailContent" layoutX="39.0" layoutY="138.0" prefHeight="211.0" prefWidth="443.0" />
-		<TextField fx:id="emailTo" layoutX="83.0" layoutY="46.0" prefHeight="26.0" prefWidth="399.0" />
-		<Label layoutX="39.0" layoutY="90.0" text="CC:" />
-		<TextField fx:id="emailCC" layoutX="83.0" layoutY="85.0" prefHeight="26.0" prefWidth="399.0" />
-		<MenuBar>
-			<menus>
-				<Menu mnemonicParsing="false" text="Setup">
-					<items>
-						<MenuItem mnemonicParsing="false" text="SMTP" />
-					</items>
-				</Menu>
-				<Menu mnemonicParsing="false" text="Help">
-					<items>
-						<MenuItem mnemonicParsing="false" text="About" />
-					</items>
-				</Menu>
-			</menus>
-		</MenuBar>
-	</children>
-</AnchorPane>
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="452.0" prefWidth="638.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prince.smtp_test.FXMLController">
+    <tabs>
+        <Tab fx:id="tabSendEmail" text="Send Email">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="442.0" prefWidth="631.0">
+                    <children>
+                        <Button fx:id="button_send" layoutX="39.0" layoutY="378.0" onAction="#handleSendEmailAction" text="Send Email" />
+                        <Button fx:id="button_cancel" layoutX="145.0" layoutY="378.0" onAction="#handleCancelAction" text="Cancel" />
+                        <Label layoutX="39.0" layoutY="51.0" text="To:" />
+                        <TextArea fx:id="emailContent" layoutX="39.0" layoutY="138.0" prefHeight="211.0" prefWidth="443.0" />
+                        <TextField fx:id="emailTo" layoutX="83.0" layoutY="46.0" prefHeight="26.0" prefWidth="399.0" />
+                        <Label layoutX="39.0" layoutY="90.0" text="CC:" />
+                        <TextField fx:id="emailCC" layoutX="83.0" layoutY="85.0" prefHeight="26.0" prefWidth="399.0" />
+                    </children>
+                </AnchorPane>
+            </content>
+        </Tab>
+        <Tab fx:id="tabSMTPConfiguration" text="SMTP configuration">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <children>
+                        <Label layoutX="41.0" layoutY="55.0" text="SMTP server:" />
+                        <Label layoutX="41.0" layoutY="107.0" text="SMTP server Port:" />
+                        <Label layoutX="41.0" layoutY="156.0" text="Need Authentication:" />
+                        <TextField fx:id="smtp_server" layoutX="235.0" layoutY="50.0" />
+                        <TextField fx:id="smtp_port" layoutX="235.0" layoutY="102.0" promptText="25" />
+                        <CheckBox layoutX="235.0" layoutY="155.0" mnemonicParsing="false" onAction="#handleAuthentication" prefHeight="18.0" prefWidth="17.0" />
+                        <AnchorPane fx:id="credential_Pane" disable="true" layoutX="35.0" layoutY="179.0" prefHeight="106.0" prefWidth="362.0">
+                            <children>
+                                <Label layoutX="33.0" layoutY="23.0" text="User Name:" />
+                                <Label layoutX="33.0" layoutY="67.0" text="Password:" />
+                                <TextField fx:id="smtp_userName" layoutX="151.0" layoutY="18.0" />
+                                <TextField fx:id="smtp_password" layoutX="152.0" layoutY="63.0" />
+                            </children>
+                        </AnchorPane>
+                        <Button fx:id="smtp_save" layoutX="41.0" layoutY="335.0" mnemonicParsing="false" onAction="#handelSaveSMTPAction" text="Save" />
+                        <Button fx:id="smtp_cancel" layoutX="273.0" layoutY="335.0" mnemonicParsing="false" onAction="#handelSMTPCancelAction" text="Cancel" />
+                        <Button fx:id="smtp_test_configuration" layoutX="109.0" layoutY="335.0" mnemonicParsing="false" onAction="#handelTestSMTPAction" text="Test Configuration" />
+                    </children>
+                </AnchorPane>
+            </content>
+        </Tab>
+    </tabs>
+</TabPane>

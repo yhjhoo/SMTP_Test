@@ -7,10 +7,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.stage.Window;
+import javafx.scene.control.Tab;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -21,29 +20,55 @@ import javax.mail.internet.MimeMessage;
 
 public class FXMLController implements Initializable {
 
-	@FXML private TextField emailTo;
-	
-	@FXML private TextField emailCC;
-	
-	@FXML private TextArea emailContent;
-	
-	@FXML private Button button_send;
-	
-	
-	//@FXML 
-	//private Window smtp_dialog;
-	
 	@FXML
-	private void handleCancelAction(ActionEvent event) {
-		System.out.println("test22");
+	private TextField emailCC;
+
+	@FXML
+	private Tab tabSendEmail;
+
+	@FXML
+	private Tab tabSMTPConfiguration;
+
+	@FXML
+	private Button smtp_save;
+
+	@FXML
+	private TextField emailTo;
+
+	@FXML
+	private Button smtp_test_configuration;
+
+	@FXML
+	private Button smtp_cancel;
+
+	@FXML
+	public void handleSendEmailAction(ActionEvent event) {
+
 	}
-	
+
 	@FXML
-	private void handleSendEmailAction(ActionEvent event) {
-		System.out.println("test11");
-		
-		
-		
+	public void handleCancelAction(ActionEvent event) {
+
+	}
+
+	@FXML
+	public void handleAuthentication(ActionEvent event) {
+
+	}
+
+	@FXML
+	public void handelSaveSMTPAction(ActionEvent event) {
+
+	}
+
+	@FXML
+	public void handelSMTPCancelAction(ActionEvent event) {
+
+	}
+
+	@FXML
+	public void handelTestSMTPAction(ActionEvent event) {
+
 	}
 
 	@Override
@@ -52,7 +77,7 @@ public class FXMLController implements Initializable {
 	}
 
 	private void _sendEmail(String host, String userName, String password,
-			String to, String from, String subject, String content) {
+					String to, String from, String subject, String content) {
       // Recipient's email ID needs to be mentioned.
 //      String to = "yhjhoo@gmail.com";
 //
@@ -80,7 +105,7 @@ public class FXMLController implements Initializable {
 
 			// Set To: header field of the header.
 			message.addRecipient(Message.RecipientType.TO,
-					new InternetAddress(to));
+							new InternetAddress(to));
 
 			// Set Subject: header field
 			message.setSubject(subject);
