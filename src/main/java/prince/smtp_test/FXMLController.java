@@ -7,9 +7,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Tab;
+import javafx.scene.web.HTMLEditor;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -34,7 +35,16 @@ public class FXMLController implements Initializable {
 
 	@FXML
 	private TextField emailTo;
+	
+	@FXML
+	private TextField emailFrom;
 
+	@FXML
+	private TextField emailSubject;
+	
+	@FXML
+	private HTMLEditor emailContent;
+	
 	@FXML
 	private Button smtp_test_configuration;
 
@@ -43,7 +53,14 @@ public class FXMLController implements Initializable {
 
 	@FXML
 	public void handleSendEmailAction(ActionEvent event) {
-
+		String mailTo = emailTo.getText();
+		String mailFrom = emailFrom.getText();
+		String mailSubject =  emailSubject.getText();
+		
+		String mailContent = emailContent.getHtmlText();
+		
+		_sendEmail("localhost", null, null, 
+				mailTo, mailFrom, mailSubject, mailContent);
 	}
 
 	@FXML
@@ -111,7 +128,8 @@ public class FXMLController implements Initializable {
 			message.setSubject(subject);
 
 			// Now set the actual message
-			message.setText(content);
+			//message.setText(content);
+			message.setContent(content, "text/html");
 
 			// Send message
 			Transport.send(message);
