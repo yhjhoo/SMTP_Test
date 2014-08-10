@@ -10,26 +10,28 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Window;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+//import org.controlsfx.dialog.Dialogs;
 
 public class FXMLController implements Initializable {
 
-	@FXML
-	private TextField emailTo;
+	@FXML private TextField emailTo;
 	
-	@FXML
-	private TextField emailCC;
+	@FXML private TextField emailCC;
 	
-	@FXML
-	private TextArea emailContent;
+	@FXML private TextArea emailContent;
 	
-	@FXML
-	private Button button_send;
+	@FXML private Button button_send;
+	
+	
+	//@FXML 
+	//private Window smtp_dialog;
 	
 	@FXML
 	private void handleCancelAction(ActionEvent event) {
@@ -39,6 +41,9 @@ public class FXMLController implements Initializable {
 	@FXML
 	private void handleSendEmailAction(ActionEvent event) {
 		System.out.println("test11");
+		
+		
+		
 	}
 
 	@Override
