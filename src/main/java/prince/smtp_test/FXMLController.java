@@ -7,9 +7,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.HTMLEditor;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -17,9 +19,12 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 //import org.controlsfx.dialog.Dialogs;
 
 public class FXMLController implements Initializable {
+	private final Log log = LogFactory.getLog(this.getClass());
 
 	@FXML
 	private TextField emailCC;
@@ -56,6 +61,9 @@ public class FXMLController implements Initializable {
 
 	@FXML
 	private Button smtp_cancel;
+	
+	@FXML
+	private AnchorPane credential_Pane;
 
 	@FXML
 	public void handleSendEmailAction(ActionEvent event) {
@@ -77,7 +85,16 @@ public class FXMLController implements Initializable {
 
 	@FXML
 	public void handleAuthentication(ActionEvent event) {
-
+		log.info("start");
+		CheckBox cb = (CheckBox) event.getSource();
+		if(cb.isSelected() ){
+			credential_Pane.setDisable(false);
+		}else{
+			credential_Pane.setDisable(true);
+		}
+		
+		
+		log.info("end");
 	}
 
 	@FXML
@@ -92,7 +109,7 @@ public class FXMLController implements Initializable {
 
 	@FXML
 	public void handelTestSMTPAction(ActionEvent event) {
-
+		
 	}
 
 	@Override
@@ -142,7 +159,7 @@ public class FXMLController implements Initializable {
 			Transport.send(message);
 			System.out.println("Sent message successfully....");
 		} catch (MessagingException mex) {
-			mex.printStackTrace();
+			log.error(mex, mex);
 		}
 	}
 }
